@@ -64,7 +64,6 @@ cp %{_datadir}/aclocal/libtool.m4 aclocal.m4
 
 %install
 rm -rf $RPM_BUILD_ROOT
-cd %{name}-%{version}
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
