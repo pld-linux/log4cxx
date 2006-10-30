@@ -50,10 +50,10 @@ Static log4cxx library.
 Statyczna biblioteka log4cxx.
 
 %prep
-%setup -q -c
+%setup -q
 
 %build
-cd %{name}-%{version}
+cp %{_datadir}/aclocal/libtool.m4 aclocal.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
