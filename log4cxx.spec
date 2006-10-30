@@ -1,4 +1,5 @@
 Summary:	Log4cxx is a port to C++ of the log4j project
+Summary(pl):	Log4cxx jest portem projektu log4j dla C++
 Name:		log4cxx
 Version:	0.9.7
 Release:	0.2
@@ -14,9 +15,15 @@ BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Log4cxx is C++ port of Log4j. log4cxx attempts to mimic log4j usage as
+Log4cxx is C++ port of Log4j. Log4cxx attempts to mimic log4j usage as
 much as the language will allow and to be compatible with log4j
 configuration and output formats.
+
+%description -l pl
+Log4cxx jest portem Log4j dla C++. Log4cxx próbuje na¶ladowaæ
+u¿ytkowanie log4j tak bardzo na ile pozwala na to jêzyk oraz próbuje
+byæ kompatybilnym z plikami konfiguracyjnymi i formatami wyj¶ciowymi
+log4j.
 
 %package devel
 Summary:	Header files for log4cxx library
