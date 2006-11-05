@@ -1,5 +1,5 @@
-Summary:	Log4cxx is a port to C++ of the log4j project
-Summary(pl):	Log4cxx jest portem projektu log4j dla C++
+Summary:	Log4cxx - a port to C++ of the log4j project
+Summary(pl):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
 Version:	0.9.7
 Release:	0.2
@@ -29,7 +29,7 @@ log4j.
 Summary:	Header files for log4cxx library
 Summary(pl):	Pliki nag³ówkowe biblioteki log4cxx
 Group:		Development/Libraries
-#Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This is the package containing the header files for log4cxx library.
@@ -81,9 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%{_includedir}/%{name}
-%{_libdir}/liblog4cxx.la
 %attr(755,root,root) %{_libdir}/liblog4cxx.so
+%{_libdir}/liblog4cxx.la
+%{_includedir}/%{name}
 
 %files static
 %defattr(644,root,root,755)
