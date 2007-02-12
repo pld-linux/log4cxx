@@ -1,5 +1,5 @@
 Summary:	Log4cxx - a port to C++ of the log4j project
-Summary(pl):	Log4cxx - port projektu log4j dla C++
+Summary(pl.UTF-8):   Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
 Version:	0.9.7
 Release:	0.2
@@ -19,34 +19,34 @@ Log4cxx is C++ port of Log4j. Log4cxx attempts to mimic log4j usage as
 much as the language will allow and to be compatible with log4j
 configuration and output formats.
 
-%description -l pl
-Log4cxx jest portem Log4j dla C++. Log4cxx próbuje na¶ladowaæ
-u¿ytkowanie log4j tak bardzo na ile pozwala na to jêzyk oraz próbuje
-byæ kompatybilnym z plikami konfiguracyjnymi i formatami wyj¶ciowymi
+%description -l pl.UTF-8
+Log4cxx jest portem Log4j dla C++. Log4cxx prÃ³buje naÅ›ladowaÄ‡
+uÅ¼ytkowanie log4j tak bardzo na ile pozwala na to jÄ™zyk oraz prÃ³buje
+byÄ‡ kompatybilnym z plikami konfiguracyjnymi i formatami wyjÅ›ciowymi
 log4j.
 
 %package devel
 Summary:	Header files for log4cxx library
-Summary(pl):	Pliki nag³ówkowe biblioteki log4cxx
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki log4cxx
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 This is the package containing the header files for log4cxx library.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe biblioteki log4cxx.
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nagÅ‚Ã³wkowe biblioteki log4cxx.
 
 %package static
 Summary:	Static log4cxx library
-Summary(pl):	Statyczna biblioteka log4cxx
+Summary(pl.UTF-8):   Statyczna biblioteka log4cxx
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static log4cxx library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka log4cxx.
 
 %prep
