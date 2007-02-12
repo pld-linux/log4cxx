@@ -1,5 +1,5 @@
 Summary:	Log4cxx - a port to C++ of the log4j project
-Summary(pl.UTF-8):   Log4cxx - port projektu log4j dla C++
+Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
 Version:	0.9.7
 Release:	0.2
@@ -27,7 +27,7 @@ log4j.
 
 %package devel
 Summary:	Header files for log4cxx library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki log4cxx
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki log4cxx
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -39,7 +39,7 @@ Ten pakiet zawiera pliki nagłówkowe biblioteki log4cxx.
 
 %package static
 Summary:	Static log4cxx library
-Summary(pl.UTF-8):   Statyczna biblioteka log4cxx
+Summary(pl.UTF-8):	Statyczna biblioteka log4cxx
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
