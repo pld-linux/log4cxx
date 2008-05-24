@@ -1,12 +1,12 @@
 Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
-Version:	0.9.7
-Release:	0.2
+Version:	0.10.0
+Release:	0.1
 License:	Apache
 Group:		Libraries
-Source0:	http://www.apache.org/dist/logging/log4cxx/%{name}-%{version}.tar.gz
-# Source0-md5:	fd09abc90b8c0c8af1d5146a75590792
+Source0:	http://www.apache.org/dist/logging/log4cxx/0.10.0/apache-%{name}-%{version}.tar.gz
+# Source0-md5:	b30ffb8da3665178e68940ff7a61084c
 URL:		http://logging.apache.org/log4cxx/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,14 +50,14 @@ Static log4cxx library.
 Statyczna biblioteka log4cxx.
 
 %prep
-%setup -q
+%setup -q -n apache-%{name}-%{version}
 
 %build
 cp %{_datadir}/aclocal/libtool.m4 aclocal.m4
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
-%{__autoheader}
+#{__autoheader}
 %{__automake}
 %configure
 %{__make}
