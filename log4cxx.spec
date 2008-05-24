@@ -8,10 +8,8 @@ Group:		Libraries
 Source0:	http://www.apache.org/dist/logging/log4cxx/0.10.0/apache-%{name}-%{version}.tar.gz
 # Source0-md5:	b30ffb8da3665178e68940ff7a61084c
 URL:		http://logging.apache.org/log4cxx/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	apr-util-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,12 +51,7 @@ Statyczna biblioteka log4cxx.
 %setup -q -n apache-%{name}-%{version}
 
 %build
-cp %{_datadir}/aclocal/libtool.m4 aclocal.m4
-%{__libtoolize}
-%{__aclocal}
-%{__autoconf}
-#{__autoheader}
-%{__automake}
+
 %configure
 %{__make}
 
@@ -75,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc KEYS LICENSE NOTICE
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/liblog4cxx.so.*.*.*
 
