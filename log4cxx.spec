@@ -71,6 +71,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc KEYS LICENSE NOTICE
 %attr(755,root,root) %{_libdir}/liblog4cxx.so.*.*.*
 %attr(755,root,root) %{_libdir}/liblog4cxx.so.*
+%dir %{_datadir}/%{name}
 %{_datadir}/%{name}/html
 
 %files devel
