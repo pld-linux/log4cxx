@@ -7,9 +7,11 @@ License:	Apache
 Group:		Libraries
 Source0:	http://www.apache.org/dist/logging/log4cxx/0.10.0/apache-%{name}-%{version}.tar.gz
 # Source0-md5:	b30ffb8da3665178e68940ff7a61084c
+Patch0:		log4cxx-gcc43.patch
 URL:		http://logging.apache.org/log4cxx/
 BuildRequires:	apr-util-devel
 BuildRequires:	libstdc++-devel
+BuildRequires:	db4.7-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -49,6 +51,8 @@ Statyczna biblioteka log4cxx.
 
 %prep
 %setup -q -n apache-%{name}-%{version}
+
+%patch0 -p1
 
 %build
 
