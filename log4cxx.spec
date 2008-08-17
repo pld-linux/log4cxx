@@ -10,7 +10,7 @@ Source0:	http://www.apache.org/dist/logging/log4cxx/0.10.0/apache-%{name}-%{vers
 Patch0:		%{name}-gcc43.patch
 URL:		http://logging.apache.org/log4cxx/
 BuildRequires:	apr-util-devel
-BuildRequires:	db4.7-devel
+BuildRequires:	db-devel
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -51,11 +51,9 @@ Statyczna biblioteka log4cxx.
 
 %prep
 %setup -q -n apache-%{name}-%{version}
-
 %patch0 -p1
 
 %build
-
 %configure
 %{__make}
 
