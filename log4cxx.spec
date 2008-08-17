@@ -3,14 +3,13 @@ Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
 Version:	0.10.0
 Release:	0.3
-License:	Apache
+License:	Apache v2.0
 Group:		Libraries
 Source0:	http://www.apache.org/dist/logging/log4cxx/0.10.0/apache-%{name}-%{version}.tar.gz
 # Source0-md5:	b30ffb8da3665178e68940ff7a61084c
 Patch0:		%{name}-gcc43.patch
 URL:		http://logging.apache.org/log4cxx/
 BuildRequires:	apr-util-devel
-BuildRequires:	db-devel
 BuildRequires:	libstdc++-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -30,6 +29,8 @@ Summary:	Header files for log4cxx library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki log4cxx
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	apr-util-devel
+Requires:	libstdc++-devel
 
 %description devel
 This is the package containing the header files for log4cxx library.
@@ -72,7 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc KEYS LICENSE NOTICE
 %attr(755,root,root) %{_libdir}/liblog4cxx.so.*.*.*
-%attr(755,root,root) %{_libdir}/liblog4cxx.so.*
+%attr(755,root,root) %ghost %{_libdir}/liblog4cxx.so.10
 %dir %{_datadir}/%{name}
 %{_datadir}/%{name}/html
 
@@ -80,8 +81,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/liblog4cxx.so
 %{_libdir}/liblog4cxx.la
-%{_pkgconfigdir}/liblog4cxx.pc
 %{_includedir}/%{name}
+%{_pkgconfigdir}/liblog4cxx.pc
 
 %files static
 %defattr(644,root,root,755)
