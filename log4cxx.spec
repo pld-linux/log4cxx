@@ -2,7 +2,7 @@ Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
 Version:	0.10.0
-Release:	0.3
+Release:	1
 License:	Apache v2.0
 Group:		Libraries
 Source0:	http://www.apache.org/dist/logging/log4cxx/0.10.0/apache-%{name}-%{version}.tar.gz
@@ -74,8 +74,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc KEYS LICENSE NOTICE
 %attr(755,root,root) %{_libdir}/liblog4cxx.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/liblog4cxx.so.10
-%dir %{_datadir}/%{name}
-%{_datadir}/%{name}/html
 
 %files devel
 %defattr(644,root,root,755)
@@ -83,6 +81,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/liblog4cxx.la
 %{_includedir}/%{name}
 %{_pkgconfigdir}/liblog4cxx.pc
+# - apidocs subpkg?
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/html
 
 %files static
 %defattr(644,root,root,755)
