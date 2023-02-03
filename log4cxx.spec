@@ -1,8 +1,9 @@
+# TODO: our libesmtp is incompatible
 Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
 Version:	1.0.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries
 Source0:	http://www.apache.org/dist/logging/log4cxx/%{version}/apache-%{name}-%{version}.tar.gz
@@ -45,7 +46,8 @@ Ten pakiet zawiera pliki nagłówkowe biblioteki log4cxx.
 %build
 install -d build
 cd build
-%{cmake} ..
+%{cmake} .. \
+    -DHAS_LIBESMTP=OFF
 %{__make}
 
 %install
