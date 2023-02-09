@@ -1,5 +1,9 @@
-# TODO: our libesmtp is incompatible
+# TODO:
 # LOG4CXX_QT_SUPPORT
+#
+# Conditional build:
+%bcond_without	libesmtp	# (E)SMTP support via libesmtp
+
 Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
@@ -9,6 +13,7 @@ License:	Apache v2.0
 Group:		Libraries
 Source0:	http://www.apache.org/dist/logging/log4cxx/%{version}/apache-%{name}-%{version}.tar.gz
 # Source0-md5:	2255f30cd968e2c1976081824e435bd5
+Patch0:		%{name}-libesmtp.patch
 URL:		http://logging.apache.org/log4cxx/
 BuildRequires:	apr-devel >= 1
 BuildRequires:	apr-util-devel >= 1
@@ -16,6 +21,7 @@ BuildRequires:	boost-devel
 BuildRequires:	cmake >= 3.13
 # for tests
 BuildRequires:	expat-devel >= 1.95
+%{?with_libesmtp:BuildRequires:	libesmtp-devel}
 BuildRequires:	libfmt-devel >= 7.1
 BuildRequires:	libstdc++-devel >= 6:7
 BuildRequires:	pkgconfig
@@ -52,12 +58,13 @@ Ten pakiet zawiera pliki nagłówkowe biblioteki log4cxx.
 
 %prep
 %setup -q -n apache-%{name}-%{version}
+%patch0 -p1
 
 %build
 %cmake -B build \
 	-DCMAKE_INSTALL_INCLUDEDIR=include \
 	-DCMAKE_INSTALL_LIBDIR=%{_lib} \
-	-DHAS_LIBESMTP=OFF
+	%{!?with_libesmtp:-DHAS_LIBESMTP=OFF}
 
 %{__make} -C build
 
