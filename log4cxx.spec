@@ -42,6 +42,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	apr-devel >= 1
 Requires:	apr-util-devel >= 1
 Requires:	libstdc++-devel >= 6:7
+Obsoletes:	log4cxx-static < 1
 
 %description devel
 This is the package containing the header files for log4cxx library.
