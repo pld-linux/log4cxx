@@ -1,4 +1,5 @@
 # TODO: our libesmtp is incompatible
+# LOG4CXX_QT_SUPPORT
 Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
@@ -9,10 +10,17 @@ Group:		Libraries
 Source0:	http://www.apache.org/dist/logging/log4cxx/%{version}/apache-%{name}-%{version}.tar.gz
 # Source0-md5:	2255f30cd968e2c1976081824e435bd5
 URL:		http://logging.apache.org/log4cxx/
-BuildRequires:	apr-util-devel
+BuildRequires:	apr-devel >= 1
+BuildRequires:	apr-util-devel >= 1
 BuildRequires:	boost-devel
-BuildRequires:	cmake
-BuildRequires:	libstdc++-devel
+BuildRequires:	cmake >= 3.13
+# for tests
+BuildRequires:	expat-devel >= 1.95
+BuildRequires:	libfmt-devel >= 7.1
+BuildRequires:	libstdc++-devel >= 6:7
+BuildRequires:	pkgconfig
+BuildRequires:	rpmbuild(macros) >= 1.605
+BuildRequires:	unixODBC-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -31,8 +39,9 @@ Summary:	Header files for log4cxx library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki log4cxx
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	apr-util-devel
-Requires:	libstdc++-devel
+Requires:	apr-devel >= 1
+Requires:	apr-util-devel >= 1
+Requires:	libstdc++-devel >= 6:7
 
 %description devel
 This is the package containing the header files for log4cxx library.
@@ -44,22 +53,24 @@ Ten pakiet zawiera pliki nagłówkowe biblioteki log4cxx.
 %setup -q -n apache-%{name}-%{version}
 
 %build
-install -d build
-cd build
-%{cmake} .. \
-    -DHAS_LIBESMTP=OFF
-%{__make}
+%cmake -B build \
+	-DCMAKE_INSTALL_INCLUDEDIR=include \
+	-DCMAKE_INSTALL_LIBDIR=%{_lib} \
+	-DHAS_LIBESMTP=OFF
+
+%{__make} -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
