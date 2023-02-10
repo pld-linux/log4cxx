@@ -1,8 +1,7 @@
-# TODO:
-# LOG4CXX_QT_SUPPORT
 #
 # Conditional build:
 %bcond_without	libesmtp	# (E)SMTP support via libesmtp
+%bcond_without	qt		# Qt support library
 
 Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
@@ -15,6 +14,7 @@ Source0:	http://www.apache.org/dist/logging/log4cxx/%{version}/apache-%{name}-%{
 # Source0-md5:	2255f30cd968e2c1976081824e435bd5
 Patch0:		%{name}-libesmtp.patch
 URL:		http://logging.apache.org/log4cxx/
+%{?with_qt:BuildRequires:	Qt5Core-devel >= 5}
 BuildRequires:	apr-devel >= 1
 BuildRequires:	apr-util-devel >= 1
 BuildRequires:	boost-devel
@@ -56,6 +56,32 @@ This is the package containing the header files for log4cxx library.
 %description devel -l pl.UTF-8
 Ten pakiet zawiera pliki nagłówkowe biblioteki log4cxx.
 
+%package qt
+Summary:	Qt support library for log4cxx C++ logging framework
+Summary(pl.UTF-8):	Biblioteka wsparcia Qt do szkieletu logującego C++ log4cxx
+Group:		Libraries
+Requires:	%{name} = %{version}-%{release}
+
+%description qt
+Qt support library for log4cxx C++ logging framework.
+
+%description qt -l pl.UTF-8
+Biblioteka wsparcia Qt do szkieletu logującego C++ log4cxx.
+
+%package qt-devel
+Summary:	Header files for log4cxx Qt library
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki log4cxx Qt
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-qt = %{version}-%{release}
+Requires:	Qt5Core-devel >= 5
+
+%description qt-devel
+Header files for log4cxx Qt library.
+
+%description qt-devel -l pl.UTF-8
+Pliki nagłówkowe biblioteki log4cxx Qt.
+
 %prep
 %setup -q -n apache-%{name}-%{version}
 %patch0 -p1
@@ -64,7 +90,8 @@ Ten pakiet zawiera pliki nagłówkowe biblioteki log4cxx.
 %cmake -B build \
 	-DCMAKE_INSTALL_INCLUDEDIR=include \
 	-DCMAKE_INSTALL_LIBDIR=%{_lib} \
-	%{!?with_libesmtp:-DHAS_LIBESMTP=OFF}
+	%{!?with_libesmtp:-DHAS_LIBESMTP=OFF} \
+	%{?with_qt:-DLOG4CXX_QT_SUPPORT=ON}
 
 %{__make} -C build
 
@@ -92,3 +119,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/%{name}
 %{_pkgconfigdir}/liblog4cxx.pc
 %{_libdir}/cmake/log4cxx
+
+%if %{with qt}
+%files qt
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/liblog4cxx-qt.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/liblog4cxx-qt.so.15
+
+%files qt-devel
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/liblog4cxx-qt.so
+%{_includedir}/log4cxx-qt
+%{_pkgconfigdir}/liblog4cxx-qt.pc
+%endif
