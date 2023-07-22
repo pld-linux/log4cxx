@@ -6,13 +6,12 @@
 Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
-Version:	1.0.0
-Release:	3
+Version:	1.1.0
+Release:	1
 License:	Apache v2.0
 Group:		Libraries
-Source0:	http://www.apache.org/dist/logging/log4cxx/%{version}/apache-%{name}-%{version}.tar.gz
-# Source0-md5:	2255f30cd968e2c1976081824e435bd5
-Patch0:		%{name}-libesmtp.patch
+Source0:	https://downloads.apache.org/logging/log4cxx/%{version}/apache-%{name}-%{version}.tar.gz
+# Source0-md5:	50b76cadf829152371011d2db38351b2
 URL:		http://logging.apache.org/log4cxx/
 %{?with_qt:BuildRequires:	Qt5Core-devel >= 5}
 BuildRequires:	apr-devel >= 1
@@ -84,7 +83,6 @@ Pliki nagłówkowe biblioteki log4cxx Qt.
 
 %prep
 %setup -q -n apache-%{name}-%{version}
-%patch0 -p1
 
 %build
 %cmake -B build \
@@ -131,4 +129,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/liblog4cxx-qt.so
 %{_includedir}/log4cxx-qt
 %{_pkgconfigdir}/liblog4cxx-qt.pc
+%{_libdir}/cmake/log4cxx-qt
 %endif
