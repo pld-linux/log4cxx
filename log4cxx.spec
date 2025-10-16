@@ -7,7 +7,7 @@ Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
 Version:	1.1.0
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://downloads.apache.org/logging/log4cxx/%{version}/apache-%{name}-%{version}.tar.gz
