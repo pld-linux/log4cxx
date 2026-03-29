@@ -6,13 +6,14 @@
 Summary:	Log4cxx - a port to C++ of the log4j project
 Summary(pl.UTF-8):	Log4cxx - port projektu log4j dla C++
 Name:		log4cxx
-Version:	1.1.0
-Release:	2
+Version:	1.6.1
+Release:	1
 License:	Apache v2.0
 Group:		Libraries
 Source0:	https://downloads.apache.org/logging/log4cxx/%{version}/apache-%{name}-%{version}.tar.gz
-# Source0-md5:	50b76cadf829152371011d2db38351b2
-URL:		http://logging.apache.org/log4cxx/
+# Source0-md5:	f3f5a58d6c7dd15abdf3a8f498b92209
+Patch0:		%{name}-fmt12.patch
+URL:		https://logging.apache.org/log4cxx/
 %{?with_qt:BuildRequires:	Qt5Core-devel >= 5}
 BuildRequires:	apr-devel >= 1
 BuildRequires:	apr-util-devel >= 1
@@ -22,7 +23,7 @@ BuildRequires:	cmake >= 3.13
 BuildRequires:	expat-devel >= 1.95
 %{?with_libesmtp:BuildRequires:	libesmtp-devel}
 BuildRequires:	libfmt-devel >= 7.1
-BuildRequires:	libstdc++-devel >= 6:7
+BuildRequires:	libstdc++-devel >= 6:8
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRequires:	unixODBC-devel
@@ -46,7 +47,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	apr-devel >= 1
 Requires:	apr-util-devel >= 1
-Requires:	libstdc++-devel >= 6:7
+Requires:	libstdc++-devel >= 6:8
 Obsoletes:	log4cxx-static < 1
 
 %description devel
@@ -83,6 +84,7 @@ Pliki nagłówkowe biblioteki log4cxx Qt.
 
 %prep
 %setup -q -n apache-%{name}-%{version}
+%patch -P0 -p1
 
 %build
 %cmake -B build \
@@ -107,26 +109,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc KEYS LICENSE NOTICE
-%attr(755,root,root) %{_libdir}/liblog4cxx.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liblog4cxx.so.15
+%doc LICENSE NOTICE README.md
+%{_libdir}/liblog4cxx.so.*.*.*
+%ghost %{_libdir}/liblog4cxx.so.15
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/liblog4cxx.so
-%{_includedir}/%{name}
+%{_libdir}/liblog4cxx.so
+%{_includedir}/log4cxx
 %{_pkgconfigdir}/liblog4cxx.pc
 %{_libdir}/cmake/log4cxx
 
 %if %{with qt}
 %files qt
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/liblog4cxx-qt.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/liblog4cxx-qt.so.15
+%{_libdir}/liblog4cxx-qt.so.*.*.*
+%ghost %{_libdir}/liblog4cxx-qt.so.15
 
 %files qt-devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/liblog4cxx-qt.so
+%{_libdir}/liblog4cxx-qt.so
 %{_includedir}/log4cxx-qt
 %{_pkgconfigdir}/liblog4cxx-qt.pc
 %{_libdir}/cmake/log4cxx-qt
